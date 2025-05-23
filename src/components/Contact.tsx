@@ -24,6 +24,7 @@ export const Contact = () => {
     email: "",
     message: "",
   });
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -35,6 +36,7 @@ export const Contact = () => {
       ...prev,
       [name]: value,
     }));
+
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({
         ...prev,
@@ -68,21 +70,15 @@ export const Contact = () => {
 
     setIsSubmitting(true);
 
-    const subject = `Contact Form Submission from ${formData.name}`;
-    const body = `
-            Name: ${formData.name}
-            Phone: ${formData.phone}
-            Email: ${formData.email}
-            
-            Message:
-            ${formData.message}
-        `.replace(/^\s+/gm, "");
+    const whatsappMessage = `Name: ${formData.name || "N/A"}%0APhone: ${
+      formData.phone
+    }%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
+    const phoneNumber = "212642523651"; // Your WhatsApp number
 
-    const mailtoLink = `mailto:contact.baymoh@gmail.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailtoLink;
+    window.open(
+      `https://wa.me/${phoneNumber}?text=${whatsappMessage}`,
+      "_blank"
+    );
 
     setTimeout(() => {
       setFormData({
@@ -167,11 +163,8 @@ export const Contact = () => {
               className="bg-white p-8 rounded-2xl shadow-xl border border-amber-200"
             >
               <div className="space-y-6">
-                <motion.div
-                  className="space-y-2"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                {/* Name */}
+                <motion.div className="space-y-2" whileHover={{ scale: 1.01 }}>
                   <label className="block text-lg font-medium text-amber-900">
                     Your Name*
                   </label>
@@ -198,11 +191,8 @@ export const Contact = () => {
                   )}
                 </motion.div>
 
-                <motion.div
-                  className="space-y-2"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                {/* Phone */}
+                <motion.div className="space-y-2" whileHover={{ scale: 1.01 }}>
                   <label className="block text-lg font-medium text-amber-900">
                     Phone Number*
                   </label>
@@ -229,11 +219,8 @@ export const Contact = () => {
                   )}
                 </motion.div>
 
-                <motion.div
-                  className="space-y-2"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                {/* Email */}
+                <motion.div className="space-y-2" whileHover={{ scale: 1.01 }}>
                   <label className="block text-lg font-medium text-amber-900">
                     Email Address*
                   </label>
@@ -260,11 +247,8 @@ export const Contact = () => {
                   )}
                 </motion.div>
 
-                <motion.div
-                  className="space-y-2"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                {/* Message */}
+                <motion.div className="space-y-2" whileHover={{ scale: 1.01 }}>
                   <label className="block text-lg font-medium text-amber-900">
                     Your Message*
                   </label>
@@ -273,7 +257,7 @@ export const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Type your message here?"
+                    placeholder="Type your message here"
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.message
                         ? "border-red-500"
@@ -291,6 +275,7 @@ export const Contact = () => {
                   )}
                 </motion.div>
 
+                {/* Submit */}
                 <motion.button
                   type="submit"
                   className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 px-6 py-4 rounded-xl text-white font-bold cursor-pointer disabled:opacity-70 transition-all duration-300 shadow-lg hover:shadow-amber-700/30"
@@ -327,7 +312,7 @@ export const Contact = () => {
                       Sending...
                     </motion.span>
                   ) : (
-                    "Send Message"
+                    "Send via WhatsApp"
                   )}
                 </motion.button>
               </div>

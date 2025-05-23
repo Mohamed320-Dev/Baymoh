@@ -7,7 +7,7 @@ import ScrollToTop from "./components/ScrollToTo";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter basename="/baymoh-studio">
+    <BrowserRouter>
       <ScrollToTop />
       <App />
     </BrowserRouter>

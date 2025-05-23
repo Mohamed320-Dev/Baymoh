@@ -1,16 +1,16 @@
 {
-  "homepage": "https://Mohamed320-Dev.github.io/baymoh-studio",
+  "homepage": "https://Mohamed320-Dev.github.io/baymoh",
   "name": "Baymoh-studio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

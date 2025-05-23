@@ -12,13 +12,13 @@ export const App = () => {
       <Route element={<Layout />}>
         {/* Home route - works for both / and /baymoh-studio */}
         <Route index element={<Home />} />
-        <Route path="/baymoh-studio" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
         {/* Other routes */}
-        <Route path="/baymoh-studio/events" element={<Events />} />
-        <Route path="/baymoh-studio/projects" element={<Projects />} />
-        <Route path="/baymoh-studio/studio" element={<Studio />} />
-        <Route path="/baymoh-studio/contact" element={<ContactP />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/studio" element={<Studio />} />
+        <Route path="/contact" element={<ContactP />} />
       </Route>
     </Routes>
   );
